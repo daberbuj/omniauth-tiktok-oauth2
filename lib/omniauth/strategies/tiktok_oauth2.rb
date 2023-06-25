@@ -63,6 +63,18 @@ module OmniAuth
           'Access-Token' => access_token.token,
         }
       end
+
+      def build_access_token
+        client.auth_code.get_token(
+          request.params['code'],
+          {
+            redirect_uri: callback_url,
+            headers: {'Content-Type' => 'application/json'},
+          }.merge(token_params.to_hash(symbolize_keys: true)),
+          deep_symbolize(options.auth_token_params)
+        )
+      end
+
     end
   end
 end
