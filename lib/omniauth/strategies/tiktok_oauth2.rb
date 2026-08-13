@@ -23,13 +23,13 @@ module OmniAuth
         end
       end
 
-      uid{ raw_info['id'] }
+      uid{ raw_info['core_user_id'] }
 
       info do
         {
           email: raw_info['email'],
           name: raw_info['display_name'],
-          id: raw_info['id'],
+          id: raw_info['core_user_id'],
           create_time: raw_info['create_time'],
         }
       end
